@@ -12,6 +12,7 @@ public class MainShip : MonoBehaviour
     public Path path;
     public bool pathFollowingEnabled = false;
     public float waypointDistance = 3;
+    public int currentWaypoint = -1;
     public float banking = 0.1f; 
     public float damping = 0.1f;
 
@@ -47,14 +48,18 @@ public class MainShip : MonoBehaviour
             transform.LookAt(transform.position + velocity, tempUp);
 
             velocity -= (damping * velocity * Time.deltaTime);
-        }        
+        } 
     }
 
     public Vector3 PathFollow()
     {
         Vector3 nextWaypoint = path.NextWaypoint();
         if (path.IsLast())
-        {
+        {   
+            if(Vector3.Distance(transform.position, nextWaypoint) < waypointDistance) {
+                pathFollowingEnabled = false;
+                currentWaypoint++;
+            }
             return Arrive(nextWaypoint);
         }
         else
@@ -62,6 +67,7 @@ public class MainShip : MonoBehaviour
             if (Vector3.Distance(transform.position, nextWaypoint) < waypointDistance)
             {
                 path.AdvanceToNext();
+                currentWaypoint = path.next; 
             }
             return Seek(nextWaypoint);
         }
