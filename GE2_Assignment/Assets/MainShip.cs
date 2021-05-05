@@ -48,7 +48,7 @@ public class MainShip : MonoBehaviour
             transform.LookAt(transform.position + velocity, tempUp);
 
             velocity -= (damping * velocity * Time.deltaTime);
-        } 
+        }
     }
 
     public Vector3 PathFollow()

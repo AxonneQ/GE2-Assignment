@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
-    List<GameObject> scenes;
+    public List<GameObject> scenes;
     public int activeIndex = 0;
 
     // Start is called before the first frame update
