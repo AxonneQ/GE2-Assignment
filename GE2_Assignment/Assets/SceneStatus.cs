@@ -18,7 +18,7 @@ public class SceneStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int currentWaypoint = triggerObject.GetComponent<MainShip>().currentWaypoint;
+        int currentWaypoint = triggerObject.GetComponent<PathFollow>().currentWaypoint;
         if (currentWaypoint == finishAtWaypoint) {
             isFinished = true;
         }

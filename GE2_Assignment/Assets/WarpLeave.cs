@@ -20,12 +20,14 @@ public class WarpLeave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MainShip mship = ship.GetComponent<MainShip>();
-        if(mship.currentWaypoint == leaveAtWaypoint) {
-            mship.maxSpeed = maxSpeedAfterLeave;
-            mship.velocity = mship.velocity.normalized * maxVelocityAfterLeave;
+        Boid ship = this.ship.GetComponent<Boid>();
+        PathFollow shipPath = this.ship.GetComponent<PathFollow>();
+
+        if(shipPath.currentWaypoint == leaveAtWaypoint) {
+            ship.maxSpeed = maxSpeedAfterLeave;
+            ship.velocity = ship.velocity.normalized * maxVelocityAfterLeave;
             audioSources[1].PlayOneShot(sound);
-            mship.currentWaypoint = 0;
+            shipPath.currentWaypoint = 0;
         }
     }
 }

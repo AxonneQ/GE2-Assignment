@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GetComponent<MainShip>().currentWaypoint == followStartAtWaypoint && followObject == false) {
+        if(GetComponent<PathFollow>().currentWaypoint == followStartAtWaypoint && followObject == false) {
             followObject = true;
             //TextManager.WriteText("Testing text print!", 2);
         }

@@ -27,7 +27,7 @@ public class WarpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GetComponent<MainShip>().currentWaypoint == warpStartAtWaypoint) {
+        if(GetComponent<PathFollow>().currentWaypoint == warpStartAtWaypoint) {
             warpEnabled = true;
         }
 
@@ -36,7 +36,7 @@ public class WarpController : MonoBehaviour
             
             if(initWarp) {
                 //warpObject.transform.position = Vector3.Lerp(warpObject.transform.position, transform.position, 0.001f);
-                Vector3 shipVel = GetComponent<MainShip>().velocity;
+                Vector3 shipVel = GetComponent<Boid>().velocity;
                 Vector3 warpVel = (shipVel.normalized * Time.deltaTime * 200f);
                 warpObject.transform.position += warpVel;
                 if(Vector3.Distance(warpObject.transform.position, transform.position) > 400f) {
