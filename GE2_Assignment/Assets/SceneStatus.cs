@@ -9,6 +9,7 @@ public class SceneStatus : MonoBehaviour
     public GameObject triggerObject;
     public int finishAtWaypoint;
     
+    
     void Start()
     {
         isFinished = false;
