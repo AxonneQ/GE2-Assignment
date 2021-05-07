@@ -7,6 +7,7 @@ public class WarpLeave : MonoBehaviour
     public GameObject ship;
     public float maxSpeedAfterLeave;
     public float maxVelocityAfterLeave;
+    public float maxForceAfterLeave;
     public int leaveAtWaypoint;
     public AudioClip sound;
 
@@ -25,6 +26,8 @@ public class WarpLeave : MonoBehaviour
 
         if(shipPath.currentWaypoint == leaveAtWaypoint) {
             ship.maxSpeed = maxSpeedAfterLeave;
+            ship.maxForce = maxForceAfterLeave;
+            ship.force = ship.force.normalized * maxForceAfterLeave;
             ship.velocity = ship.velocity.normalized * maxVelocityAfterLeave;
             audioSources[1].PlayOneShot(sound);
             shipPath.currentWaypoint = 0;

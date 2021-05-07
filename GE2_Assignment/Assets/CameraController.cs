@@ -4,26 +4,107 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public List<GameObject> cameras;
     public GameObject currentCamera;
-    public bool lookAtObject = true;
+    private int currentCameraIndex;
+    public GameObject currentTarget;
+    public GameObject targetFocus;
+    public bool lookAtObject = false;
+    public int LookStartAtWaypoint;
     public bool followObject = false;
     public int followStartAtWaypoint;
+    public int nextCameraAtWaypoint = -1;
+
+    // Start is called before the first frame update
     void Start()
     {
-        
+
+    }
+
+    void Awake()
+    {
+        for (int i = 0; i < cameras.Count; i++)
+        {
+            cameras[i].SetActive(false);
+        }
+        currentCameraIndex = 0;
+        currentCamera = cameras[currentCameraIndex];
+        UpdateOptions();
+        currentCamera.SetActive(true);
+    }
+
+    private void UpdateOptions()
+    {
+        CameraOptions options = currentCamera.GetComponent<CameraOptions>();
+        lookAtObject = options.lookAtObject;
+        LookStartAtWaypoint = options.LookStartAtWaypoint;
+        followObject = options.followObject;
+        followStartAtWaypoint = options.followStartAtWaypoint;
+        currentTarget = options.targetObject;
+        if (options.targetFocus == null)
+        {
+            targetFocus = currentTarget;
+        }
+        else
+        {
+            targetFocus = options.targetFocus;
+        }
+        nextCameraAtWaypoint = options.nextCameraAtWaypoint;
+    }
+
+    public void NextCamera()
+    {
+        currentCamera.SetActive(false);
+        currentCamera = cameras[currentCameraIndex++];
+        UpdateOptions();
+        currentCamera.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GetComponent<PathFollow>().currentWaypoint == followStartAtWaypoint && followObject == false) {
+        int currentWaypoint = currentTarget.GetComponent<PathFollow>().currentWaypoint;
+
+        if (currentWaypoint == followStartAtWaypoint && followObject == false)
+        {
             followObject = true;
-            //TextManager.WriteText("Testing text print!", 2);
         }
 
-        if(followObject) {
+        if (currentWaypoint == LookStartAtWaypoint && lookAtObject == false && targetFocus != null)
+        {
+            lookAtObject = true;
+        }
+
+        if (followObject)
+        {
             currentCamera.GetComponent<FollowObject>().enabled = true;
+        }
+        else
+        {
+            //currentCamera.GetComponent<FollowObject>().enabled = false;
+        }
+
+        if (lookAtObject)
+        {
+            if (targetFocus != null)
+            {
+                // Vector3 newPos = targetFocus.transform.position - currentCamera.transform.position;
+                // var newRot = Quaternion.LookRotation(newPos);
+                // currentCamera.transform.rotation = Quaternion.Lerp(transform.rotation, newRot, 0.99f);
+                // Vector3 forward = currentCamera.transform.forward;
+                // Vector3 lerp = Vector3.Lerp(forward, targetFocus.transform.position, 0.05f * Time.deltaTime);
+                // currentCamera.transform.LookAt(lerp);
+                currentCamera.transform.rotation = Quaternion.Slerp( currentCamera.transform.rotation, Quaternion.LookRotation( targetFocus.transform.position - currentCamera.transform.position ), Time.deltaTime );
+            }
+            else
+            {
+                lookAtObject = false;
+            }
+        }
+
+        if (currentWaypoint == nextCameraAtWaypoint && nextCameraAtWaypoint > -1)
+        {
+            NextCamera();
         }
     }
 }

@@ -14,17 +14,25 @@ public class AsteroidManager : MonoBehaviour
         asteroids = new GameObject[count];
         for (int i = 0; i < count; i++)
         {
-            Vector3 pos = Random.insideUnitSphere * radius + transform.position;
+            Vector3 pos = Random.insideUnitSphere * radius;
+            pos = new Vector3(pos.x + radius, pos.y, pos.z);
             asteroids[i] = GameObject.Instantiate(asteroidPrefabs[Random.Range(0,3)], pos, new Quaternion());
+            float scaleFactor = Random.Range(1,3);
+            Vector3 scale = asteroids[i].transform.localScale;
+            scale.x *= scaleFactor;
+            scale.y *= scaleFactor;
+            scale.z *= scaleFactor;
+            asteroids[i].transform.localScale = scale;
         }
 
-        for (int i = 0; i < count; i++)
-        {
-            if ((asteroids[i].transform.position - transform.position).sqrMagnitude > radius)
-            {
-                asteroids[i].transform.position = Random.insideUnitSphere.normalized * radius + transform.position;
-            }
-        }
+        // for (int i = 0; i < count; i++)
+        // {
+        //     asteroids[i].transform.position = Random.insideUnitSphere.normalized * radius;
+        //     // if ((asteroids[i].transform.position - transform.position).sqrMagnitude > radius)
+        //     // {
+                
+        //     // }
+        // }
     }
 
     // Update is called once per frame
