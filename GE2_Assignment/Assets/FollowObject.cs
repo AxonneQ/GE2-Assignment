@@ -40,10 +40,17 @@ public class FollowObject : MonoBehaviour
         if (velocity.magnitude > float.Epsilon)
         {
             Vector3 tempUp = Vector3.Lerp(transform.up, Vector3.up + (acceleration * banking), Time.deltaTime * 3.0f);
-            transform.LookAt(transform.position + velocity, tempUp);
+            //transform.LookAt(transform.position + velocity, tempUp);
+            transform.rotation = Quaternion.Slerp( 
+            transform.rotation, 
+            Quaternion.LookRotation( (target.transform.position + velocity) - transform.position, tempUp ), 
+            Time.deltaTime);
+
 
             transform.position += velocity * Time.deltaTime;
             velocity *= (1.0f - (damping * Time.deltaTime));
+
+
         }
         
     }
@@ -68,6 +75,7 @@ public class FollowObject : MonoBehaviour
             velocity = Vector3.zero;
             acceleration = Vector3.zero;
             transform.position = Vector3.Lerp(transform.position, transform.parent.position, 0.5f * Time.deltaTime);
+
             //transform.LookAt(Vector3.Lerp(transform.position, transform.parent.position, 0.001f));
             
             //transform.rotation = Quaternion.Slerp(transform.rotation, target.GetComponentInParent<Transform>().rotation, 0.1f);

@@ -88,13 +88,10 @@ public class CameraController : MonoBehaviour
         {
             if (targetFocus != null)
             {
-                // Vector3 newPos = targetFocus.transform.position - currentCamera.transform.position;
-                // var newRot = Quaternion.LookRotation(newPos);
-                // currentCamera.transform.rotation = Quaternion.Lerp(transform.rotation, newRot, 0.99f);
-                // Vector3 forward = currentCamera.transform.forward;
-                // Vector3 lerp = Vector3.Lerp(forward, targetFocus.transform.position, 0.05f * Time.deltaTime);
-                // currentCamera.transform.LookAt(lerp);
-                currentCamera.transform.rotation = Quaternion.Slerp( currentCamera.transform.rotation, Quaternion.LookRotation( targetFocus.transform.position - currentCamera.transform.position ), Time.deltaTime );
+                currentCamera.transform.rotation = Quaternion.Slerp( 
+                    currentCamera.transform.rotation, 
+                    Quaternion.LookRotation( targetFocus.transform.position - currentCamera.transform.position ), 
+                    Time.deltaTime * 3.0f);
             }
             else
             {

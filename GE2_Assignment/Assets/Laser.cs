@@ -8,7 +8,7 @@ public class Laser : MonoBehaviour
     public float speed = 100;
     void Start()
     {
-        Destroy(this.gameObject, 5);
+        Destroy(this.gameObject, 2);
     }
 
     void Update()

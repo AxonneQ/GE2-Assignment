@@ -8,13 +8,19 @@ public class OffsetPursue : SteeringBehaviour
     Vector3 targetPos;
     Vector3 worldTarget;
     Vector3 offset;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    void OnEnable() {
         offset = transform.position - leader.transform.position;
 
         offset = Quaternion.Inverse(leader.transform.rotation) * offset;
+        
     }
 
     // Update is called once per frame
