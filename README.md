@@ -1,5 +1,28 @@
 # GE2-Assignment
+# Final project:
 
+Video:
+
+[![YouTube](https://img.youtube.com/vi/icx3BPPs_5c/0.jpg)](https://www.youtube.com/watch?v=icx3BPPs_5c)
+
+The story is about Kerr - a rebel who has secured Queen execution orders from the Empire. He must deliver the message to the General, so that the rescue is organised to save the Queen as nobody knows she is in peril.
+
+## Scene 1:
+Scene starts by looking at Kerr leaving the planet. An story intro monologue is told to the viewer by Kerr. From there Hyperdrive activates and Kerr leaves the planet behind.
+
+## Scene 2: 
+It appears that Kerr was followed by 2 Tie Fighters who exit the hyperdrive and chase Kerr. Using swift movements, Kerr manages to avoid the fire and enters a field of asteroids. One enemy crashes into an asteroid, while the other closely chases Kerr and doesn't stop for a second. As the distance closes in, a rebel ship appears behind the Tie Fighter and shoots it down. It turns out his name is Don, and he asks Kerr to help him as there is a Star Destroyer nearby and rebels are shot down in all out battle. Kerr decides to help and follows Don.
+
+## Scene 3:
+Kerr and Don look around and there is mayhem everywhere. Projectiles are flying around them and ships are shot down. Don tells Kerr that they need to destroy the spherical radio transmitter on top of the Star Destroyer Ship to disable the communication between it and Tie fighters. On the way to transmitter, they fight off the enemies. Once at the transmitter, they coordinate the attack and destroy it. Shortly after the Star Destroyer flies away in hyperspeed as they cannot continue combat without communication. Don thanks Kerr who shortly after flies off to finish his mission, and deliver the execution orders to the General. 
+
+## Scene 4:
+A brief black screen ending scene with subtitles telling the viewer about the success of Kerr's mission before the end.
+
+
+---
+
+# Initial idea:
 ## Space Battle
 (**Note:** Currently Star Wars models are used, but might change later in the development since Star Wars franchise is "overdone to death". )
 
