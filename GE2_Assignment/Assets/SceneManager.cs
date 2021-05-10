@@ -33,8 +33,3 @@ public class SceneManager : MonoBehaviour
         }
     }
 }
-
-
-// Scene1 - Camera at protagonist flying into hyperspace, 5 seconds in switch to Scene2
-// Scene2 - Leave hyperspace at asteroid field
-

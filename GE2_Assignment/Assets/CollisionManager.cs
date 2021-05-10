@@ -5,14 +5,20 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     public GameObject collisionEffect;
+    public List<string> ignoreCollisionTags;
     private bool hasCollided = false;
 
     // Start is called before the first frame update
     void Start()
-    { }
+    {
+
+    }
 
     void OnCollisionEnter(Collision other)
-    {
+    {   
+        if(ignoreCollisionTags.Contains(other.gameObject.tag)) {
+            return;
+        }
         if(!hasCollided) {
             hasCollided = true;
             Debug.Log($"collided with {other.gameObject.tag}");

@@ -24,15 +24,6 @@ public class AsteroidManager : MonoBehaviour
             scale.z *= scaleFactor;
             asteroids[i].transform.localScale = scale;
         }
-
-        // for (int i = 0; i < count; i++)
-        // {
-        //     asteroids[i].transform.position = Random.insideUnitSphere.normalized * radius;
-        //     // if ((asteroids[i].transform.position - transform.position).sqrMagnitude > radius)
-        //     // {
-                
-        //     // }
-        // }
     }
 
     // Update is called once per frame

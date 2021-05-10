@@ -8,6 +8,9 @@ TagManager:
   - Friendly
   - Laser
   - Asteroid
+  - LaserGreen
+  - LaserRed
+  - FriendlyMain
   layers:
   - Default
   - TransparentFX

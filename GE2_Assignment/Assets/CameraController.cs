@@ -15,6 +15,11 @@ public class CameraController : MonoBehaviour
     public int followStartAtWaypoint;
     public int nextCameraAtWaypoint = -1;
 
+
+    private Vector3 defaultDirection;
+    private float timeToSwitch = 1;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +40,8 @@ public class CameraController : MonoBehaviour
 
     private void UpdateOptions()
     {
+        defaultDirection = currentCamera.transform.forward;
+
         CameraOptions options = currentCamera.GetComponent<CameraOptions>();
         lookAtObject = options.lookAtObject;
         LookStartAtWaypoint = options.LookStartAtWaypoint;
@@ -91,11 +98,18 @@ public class CameraController : MonoBehaviour
                 currentCamera.transform.rotation = Quaternion.Slerp( 
                     currentCamera.transform.rotation, 
                     Quaternion.LookRotation( targetFocus.transform.position - currentCamera.transform.position ), 
-                    Time.deltaTime * 3.0f);
+                    Time.deltaTime * 5.0f);
             }
             else
             {
-                lookAtObject = false;
+                timeToSwitch -= Time.deltaTime;
+                if (timeToSwitch <= 0) {
+                    currentCamera.transform.rotation = Quaternion.Slerp( 
+                        currentCamera.transform.rotation, 
+                        Quaternion.LookRotation( defaultDirection ), 
+                        Time.deltaTime * 2.0f);
+                }
+                //lookAtObject = false;
             }
         }
 

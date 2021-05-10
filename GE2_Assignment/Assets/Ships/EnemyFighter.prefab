@@ -195,8 +195,13 @@ GameObject:
   - component: {fileID: 3793543622299660560}
   - component: {fileID: 1834937314760309675}
   - component: {fileID: 1834937314760309674}
+  - component: {fileID: 5193850312746167454}
+  - component: {fileID: 7337510169962196286}
+  - component: {fileID: 499009619245754586}
   - component: {fileID: 1834937314760309677}
-  - component: {fileID: 4296934503932087776}
+  - component: {fileID: 8698742551214931388}
+  - component: {fileID: 8452863855561649774}
+  - component: {fileID: 251998012234965134}
   m_Layer: 0
   m_Name: EnemyFighter
   m_TagString: Enemy
@@ -252,7 +257,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 30
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -357,7 +362,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.499
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -366,9 +371,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 300
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -401,7 +406,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -441,6 +446,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &5193850312746167454
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793543622299660561}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &7337510169962196286
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793543622299660561}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &499009619245754586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793543622299660561}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.06, y: 2.46, z: 2.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1834937314760309677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,24 +504,67 @@ MonoBehaviour:
   acceleration: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   mass: 1
-  maxSpeed: 100
-  slowingDistance: 40
-  maxForce: 100
+  maxSpeed: 40
+  slowingDistance: 10
+  maxForce: 40
   damping: 0.01
   banking: 0.1
---- !u!135 &4296934503932087776
-SphereCollider:
+--- !u!114 &8698742551214931388
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3793543622299660561}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 50
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428ee7ab7aa65da49b3b5101e6fdc33c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionEffect: {fileID: 4642924304405765230, guid: e57a4a52298c17246925aca491b0c742, type: 3}
+  ignoreCollisionTags:
+  - LaserRed
+--- !u!114 &8452863855561649774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793543622299660561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437b874e9461a4e40925546466095740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guns:
+  - {fileID: 7169792098934858738}
+  - {fileID: 7094895564233223412}
+  priorityTarget: {fileID: 0}
+  target: {fileID: 0}
+  laserPrefab: {fileID: 8326943436847804107, guid: 893b9afb2b191e54dae9101c51ce756a, type: 3}
+  laserSound: {fileID: 8300000, guid: 9f722d07b8abd9c47a63d91b0faae6a8, type: 3}
+  isEnabled: 1
+  isShooting: 0
+  lookForTag: Friendly
+  rateOfFire: 0
+--- !u!114 &251998012234965134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793543622299660561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1598e01db752d5a4184b3272091d4ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  force: {x: 0, y: 0, z: 0}
+  boid: {fileID: 0}
+  targetTag: Friendly
+  range: 50
+  buffer: 10
 --- !u!1 &5190068136511212513
 GameObject:
   m_ObjectHideFlags: 0
