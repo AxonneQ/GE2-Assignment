@@ -7,19 +7,77 @@ Video:
 
 The story is about Kerr - a rebel who has secured Queen execution orders from the Empire. He must deliver the message to the General, so that the rescue is organised to save the Queen as nobody knows she is in peril.
 
-## Scene 1:
+### Scene 1:
 Scene starts by looking at Kerr leaving the planet. An story intro monologue is told to the viewer by Kerr. From there Hyperdrive activates and Kerr leaves the planet behind.
 
-## Scene 2: 
+### Scene 2: 
 It appears that Kerr was followed by 2 Tie Fighters who exit the hyperdrive and chase Kerr. Using swift movements, Kerr manages to avoid the fire and enters a field of asteroids. One enemy crashes into an asteroid, while the other closely chases Kerr and doesn't stop for a second. As the distance closes in, a rebel ship appears behind the Tie Fighter and shoots it down. It turns out his name is Don, and he asks Kerr to help him as there is a Star Destroyer nearby and rebels are shot down in all out battle. Kerr decides to help and follows Don.
 
-## Scene 3:
+### Scene 3:
 Kerr and Don look around and there is mayhem everywhere. Projectiles are flying around them and ships are shot down. Don tells Kerr that they need to destroy the spherical radio transmitter on top of the Star Destroyer Ship to disable the communication between it and Tie fighters. On the way to transmitter, they fight off the enemies. Once at the transmitter, they coordinate the attack and destroy it. Shortly after the Star Destroyer flies away in hyperspeed as they cannot continue combat without communication. Don thanks Kerr who shortly after flies off to finish his mission, and deliver the execution orders to the General. 
 
-## Scene 4:
+### Scene 4:
 A brief black screen ending scene with subtitles telling the viewer about the success of Kerr's mission before the end.
 
+---
+## Modified course behaviours:
 
+- Pursuit
+- Offset Pursuit
+- Path Follow
+- Seek
+- Arrive
+
+## Custom Behaviours:
+
+- GoToTarget: Finds all target entities in a radius and goes to the closest target. 
+
+## Custom Classes
+
+- AsteroidManager - Creates a random field of asteroids within a specified radius of a sphere from prefabs.
+- CollisionManager - Manages the chain of events when an object collided with another (eg. Destruction, followed by sound, followed by particle explosion)
+- MusicManager - Manages the track list of the background music.
+- StarParticles - Creates a particle effect attached to camera, that helps to make a visual impression of movement in space. (Followed tutorial at https://www.youtube.com/watch?v=YuPEmRXtwIg)
+- EnemySpawner - Much like Asteroid Manager, creates a specified amount of Enemies with preset behaviours to start combat when scene goes live.
+- SceneManager - Holds and manages children objects as scenes based on their SceneStatus.
+- Turret - Shoots a prefab at the target from specified guns on the ship. (x-wing has 4, tie fighter 2)
+- Laser - the "bullet" class.
+- SelfDestruct - For scripting purposes, some ships blow up at a specified time, so that they can be seen by the viewer instead of somewhere out of camera frame.
+
+Note: EnemySpawner was disabled in the Demo, the models are very detailed and the scale of the area was too large to even see the ships in the background. Too much lag when 500 ships were in scene on a higher end PC.
+
+## Waypoint Trigger Classes:
+
+- WarpController - Controls at what waypoint the warp visual and particle system is enabled.
+- WarpLeave - Controls the boid properties at a waypoint such as speed and force when "leaving" warp (sudden slow effect).
+- BoidModifier - Adjust boid properties at a waypoint.
+- PathFollowEnable - Enables Path Following at a waypoint.
+- SceneStatus - Switches to next scene at a waypoint.
+
+## Camera Classes:
+
+- CameraController - A single instance per scene, Contains a list of Camera Objects and switches them based on current waypoint of protagonist.
+- CameraOptions - Each Camera object has this script to activate things like Following a target, moving towards the target, letting manager know to switch to next camera.
+- FollowObject - Enables the camera to leave its initial position and catch up to the object, then attach to it.
+
+## Text Narrative Classes:
+
+- TextManager - A singleton responsible for writing text on specified text field. (Used bits from this tutorial: https://www.youtube.com/watch?v=ZVh4nH8Mayg)
+- TextPlayer - A container which uses coroutines to display subtitles at specified time using TextManager
+
+## 3D Models
+
+- X-Wing: https://www.cgtrader.com/free-3d-models/space/spaceship/star-wars-t-65
+- Tie Fighter: https://www.cgtrader.com/free-3d-models/space/spaceship/star-wars-7af15e6a-7b88-4ed7-8555-bf67fe170589
+- Star Destroyer: https://www.cgtrader.com/free-3d-models/aircraft/military/star-wars-victory-class-2-star-destroyer
+
+---
+---
+---
+---
+---
+---
+---
 ---
 
 # Initial idea:
